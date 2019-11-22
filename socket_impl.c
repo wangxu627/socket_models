@@ -1,6 +1,6 @@
 #include "socket_hdr.h"
 #include <errno.h>
-#include <stddef.h>
+
 
 int init_socket() {
 #ifdef _WIN32

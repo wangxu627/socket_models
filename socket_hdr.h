@@ -8,7 +8,13 @@
 #include <WS2tcpip.h>
 #pragma comment(lib, "WS2_32.lib")
 extern int close(int socket);
-#endif // _WIN32_WINDOWS
+#else
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#endif
 
 extern int init_socket();
 extern int find_empty_postion(int arr[], size_t size);

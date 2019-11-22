@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
 #include <errno.h>
 #include "socket_hdr.h"
 
 #define IP_ADDRESS "0.0.0.0"
 #define PORT		20000
 #define BUF_SIZE	64
-#define MAX(x, y)	((x) > (y) ? (x) : (y))
+#define MAX(x, y) ((x) > (y) ? (x) : (y))
 
 int main() {
 	int svr_sock;
@@ -57,7 +58,7 @@ int main() {
 
 
 	while (1) {
-		maxfds = -1;
+		maxfds = 0;
 		FD_ZERO(&fds_read);
 		for (i = 0; i < FD_SETSIZE; i++) {
 			if (socks[i] != 0) {
@@ -65,7 +66,7 @@ int main() {
 				maxfds = MAX(socks[i], maxfds);
 			}
 		}
-
+		
 		result = select(maxfds + 1, &fds_read, NULL, NULL, NULL);
 		for (i = 0; i < FD_SETSIZE; i++) {
 			if (socks[i] == 0) {
