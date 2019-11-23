@@ -86,6 +86,8 @@ int main() {
 					n = recv(socks[i], buf, BUF_SIZE, 0);
 					if (n == -1) {
 						printf("recv error::%d\n", errno);
+						close(socks[i]);
+						socks[i] = 0;
 					} else if (n == 0) {
 						printf("client closed\n");
 						close(socks[i]);

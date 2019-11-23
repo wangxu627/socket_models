@@ -20,8 +20,6 @@ def run_server():
     """
     input_fds = [server] # 从中读取数据
     output_fds = [] # 将数据发送出去
-    select.select(input_fds, output_fds, input_fds)
-
     message_queue = {} # 消息队列
 
     while input_fds:
